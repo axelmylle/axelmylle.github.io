@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 400;
+    font-display: auto;
+    src: local('Proxima Nova'),
+         url('./assets/fonts/Proxima-Nova-Regular.woff') format('woff');
+    unicode-range: U+0020-007F;
+  }
+  
+  @font-face {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 600;
+    font-display: auto;
+    src: local('Proxima Nova'),
+         url('./assets/fonts/Proxima-Nova-Semibold.woff') format('woff');
+    unicode-range: U+0020-007F;
+  }
+  
+  @font-face {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 700;
+    font-display: auto;
+    src: local('Proxima Nova'),
+         url('./assets/fonts/Proxima-Nova-Bold.woff') format('woff');
+    unicode-range: U+0020-007F;
+  } 
+  
+  * {
+      font-family: 'Proxima Nova';
+      font-variant-ligatures: none;
+  }
