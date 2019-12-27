@@ -1,6 +1,6 @@
+import convert from "color-convert";
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { kiwi, strawberry, orange, diamond } from 'shared/styles/colors';
-import convert from "color-convert";
 
 export const isProduction = () => process.env.NODE_ENV === 'production';
 
@@ -35,7 +35,6 @@ export enum PerformanceScale {
 export const styles =  StyleSheet.create({
     diamondFill: {
         backgroundColor: diamond,
-        fontWeight: "bold"
     },
     kiwiFill: {
         backgroundColor: kiwi,
@@ -48,10 +47,26 @@ export const styles =  StyleSheet.create({
     },
 });
 
-export function lightenColor(rgbString: string): string {
+export function lightenColor(rgbString){
     if (rgbString) {
-      const saturation = 48;
+        console.log(rgbString)
+      const saturation = 98;
       const lightness = 91;
+      // -------------------------
+      const rgbArray = rgbString.split(",").map(item => Number(item));
+      const hsl: number[] = convert.rgb.hsl(rgbArray);
+      const hue = hsl[0];
+  
+      return convert.hsl.rgb(hue, saturation, lightness);
+    } else {
+      return "(0,0,0)";
+    }
+  }
+
+  export function darkenColor(rgbString: string): string {
+    if (rgbString) {
+      const saturation = 52;
+      const lightness = 109;
       // -------------------------
       const rgbArray = rgbString.split(",").map(item => Number(item));
       const hsl: number[] = convert.rgb.hsl(rgbArray);
