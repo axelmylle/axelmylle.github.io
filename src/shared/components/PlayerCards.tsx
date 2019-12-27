@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { lightenColor, ratingChecker, performanceToClass } from "shared/utils";
+import { lightenColor, ratingChecker, performanceToClass, trimName } from "shared/utils";
 import { purple, white, diamond, black, orange } from 'shared/styles/colors';
 
 interface Props {
@@ -15,19 +15,38 @@ class PlayerCards extends Component<Props> {
         super(props);
     }
 
+    ratingSymbol(rating){
+
+            if(rating>=93){
+                return "💎"
+            }
+            if(rating>=86){
+                return "🔥"
+            }
+            if(rating>=81){
+                return "👍"
+            }
+            if(rating<80){
+                return "😂"
+            }
+        return null
+
+
+    }
+
     public render() {
         const { athlete, removePick, user } = this.props
         console.log(performanceToClass(ratingChecker(athlete.rating)))
 
         return (
             <div className={css(styles.card)} onClick={() => removePick(athlete.id, user.id, athlete)}>
+
                 <div>
                     <img className={css(styles.athleteImg)} src={athlete.img_url} />
                 </div>
                 <div>
                 <div className={css(styles.upperSection)}>
-                    {athlete.name[0]}. 
-                    {athlete.name.substring(athlete.name.lastIndexOf(" ")+1)}
+                    {trimName(athlete.name)}
                 </div>
                 <div className={css(styles.belowSection)}>
                     {athlete.position}
@@ -38,7 +57,7 @@ class PlayerCards extends Component<Props> {
                 </div>
                 </div>
                 <div className={css(styles.emoji)}>
-                💎
+                    {this.ratingSymbol(athlete.rating)}
                 </div>
             </div>
         );

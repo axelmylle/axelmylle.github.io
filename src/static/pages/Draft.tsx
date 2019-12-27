@@ -21,6 +21,8 @@ interface State {
     numberOfPicks: number,
     players: Array<any>,
     currentPicker: number,
+    lastFirstPick: number,
+    lastPicker: number,
 }
 
 class Draft extends Component<Props, State> {
@@ -29,18 +31,44 @@ class Draft extends Component<Props, State> {
         this.state = {
             users: [{
                 id: 1,
-                name: 'axel',
+                name: 'Axel',
                 players: [
                     { id: 1, name: "LeBron James", team: "LAL", rating: 97, position: "SF", img_url: "https://www.2kratings.com//wp-content/uploads/LeBron-James-2K.png" },
                     { id: 2, name: "Giannis Antetokounmpo", team: "MIL", rating: 97, position: "SF", img_url: "https://www.2kratings.com//wp-content/uploads/Giannis-Antetokounmpo.png" },
+                    { id: 38, name: "Brandon Ingram", team: "NOP", rating: 85, position: "SF", img_url: "https://www.2kratings.com//wp-content/uploads/Brandon-Ingram.png" },
+                { id: 39, name: "C.J. McCollum", team: "POR", rating: 85, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/CJ-McCollum.png" },
                 ]
             },
             {
                 id: 2,
-                name: 'michiel',
+                name: 'Michiel',
                 players: [
+                    { id: 3, name: "James Harden", team: "HOU", rating: 97, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/James-Harden.png" },
+                { id: 4, name: "Anthony Davis", team: "LAL", rating: 96, position: "PF", img_url: "https://www.2kratings.com//wp-content/uploads/Anthony-Davis.png" },
+                { id: 16, name: "Trae Young", team: "ATL", rating: 89, position: "PG", img_url: "https://www.2kratings.com//wp-content/uploads/Trae-Young.png" },
+                { id: 17, name: "Klay Thompson", team: "GSW", rating: 89, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/Klay-Thompson.png" },
                 ]
-            }
+            },
+            {
+                id: 3,
+                name: 'Jan',
+                players: [
+                    { id: 3, name: "James Harden", team: "HOU", rating: 97, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/James-Harden.png" },
+                { id: 4, name: "Anthony Davis", team: "LAL", rating: 96, position: "PF", img_url: "https://www.2kratings.com//wp-content/uploads/Anthony-Davis.png" },
+                { id: 16, name: "Trae Young", team: "ATL", rating: 89, position: "PG", img_url: "https://www.2kratings.com//wp-content/uploads/Trae-Young.png" },
+                { id: 17, name: "Klay Thompson", team: "GSW", rating: 89, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/Klay-Thompson.png" },
+                ]
+            },
+            {
+                id: 4,
+                name: 'Leander',
+                players: [
+                    { id: 3, name: "James Harden", team: "HOU", rating: 97, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/James-Harden.png" },
+                { id: 4, name: "Anthony Davis", team: "LAL", rating: 96, position: "PF", img_url: "https://www.2kratings.com//wp-content/uploads/Anthony-Davis.png" },
+                { id: 16, name: "Trae Young", team: "ATL", rating: 89, position: "PG", img_url: "https://www.2kratings.com//wp-content/uploads/Trae-Young.png" },
+                { id: 17, name: "Klay Thompson", team: "GSW", rating: 89, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/Klay-Thompson.png" },
+                ]
+            },
             ],
             players: [
                 { id: 1, name: "LeBron James", team: "LAL", rating: 97, position: "SF", img_url: "https://www.2kratings.com//wp-content/uploads/LeBron-James-2K-33x33.png" },
@@ -144,8 +172,10 @@ class Draft extends Component<Props, State> {
                 { id: 99, name: "Jabari Parker", team: "ATL", rating: 80, position: "PF", img_url: "https://www.2kratings.com//wp-content/uploads/Jabari-Parker-2K-33x33.png" },
                 { id: 100, name: "Lauri Markkanen", team: "CHI", rating: 80, position: "PF", img_url: "https://www.2kratings.com//wp-content/uploads/Lauri-Markkanen-2K-33x33.png" }
             ],
-            numberOfPicks: 3,
+            numberOfPicks: 10,
+            lastFirstPick: 1,
             currentPicker: 1,
+            lastPicker: 0
         };
 
     }
@@ -188,18 +218,47 @@ class Draft extends Component<Props, State> {
             users,
             players: playersWithoutMovedPlayer
         })
-        this.updateCurrentPicker()
+        this.updateCurrentPicker(true)
     }
 
-    updateCurrentPicker = () => {
-        let { currentPicker } = this.state
+    updateCurrentPicker = (pickType: Boolean) => {
+        /*
+        ** if argument is true, player is added
+        ** if argument is false, player gets removed
+        */
+
+        let { currentPicker, lastFirstPick, lastPicker } = this.state
         const { users } = this.state
-        if (currentPicker === users.length) {
-            currentPicker = 1
-        } else {
-            currentPicker = currentPicker + 1
+        console.log(users.length)
+
+        /*
+        ** if true, teller verhogen zoals normaal
+        ** als laatste speler heeft gekozen 
+        */
+       if(pickType === true){
+        if ((currentPicker === users.length || currentPicker === 1) && currentPicker!== lastFirstPick) {
+            if(currentPicker === users.length){
+                currentPicker = users.length
+            }
+            if(currentPicker === 1){
+                currentPicker = 1
+            }
+            lastFirstPick= currentPicker
         }
-        this.setState({ currentPicker })
+        else if(lastFirstPick === users.length && currentPicker !== 1){
+            currentPicker--
+            lastPicker--
+        }
+        else {
+            currentPicker--
+            lastPicker++
+        }
+       }
+       //if picktype is false, player got removed
+       else{
+
+       }
+        this.setState({ currentPicker, lastFirstPick, lastPicker })
 
     }
 

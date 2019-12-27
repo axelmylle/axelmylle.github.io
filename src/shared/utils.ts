@@ -15,9 +15,9 @@ export enum PerformanceScale {
     let ratingType = PerformanceScale.poor;
     if (rating >= 93) {
         ratingType = PerformanceScale.diamond;
-    } else if (rating >= 85) {
+    } else if (rating >= 86) {
         ratingType = PerformanceScale.great;
-    } else if (rating >= 83) {
+    } else if (rating >= 81) {
         ratingType = PerformanceScale.adequate;
     } 
     return ratingType;
@@ -75,5 +75,18 @@ export function lightenColor(rgbString){
       return convert.hsl.rgb(hue, saturation, lightness);
     } else {
       return "(0,0,0)";
+    }
+  }
+
+  export function trimName(name: string): string {
+    if (name) {
+      let sanitizedName = ""
+      const arrayName = name.split(/[\s.]+/)
+     arrayName.map((name, index) => {
+       arrayName.length-1 === index ? sanitizedName += name : sanitizedName += name.substring(0,1) + ". "
+      })
+     return sanitizedName
+    } else {
+      return "";
     }
   }

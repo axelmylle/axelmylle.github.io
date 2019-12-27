@@ -3,7 +3,8 @@ import { css, StyleSheet } from 'aphrodite';
 import {
     useTable,
 } from 'react-table'
-import { orange } from 'shared/styles/colors';
+import { orange, grey } from 'shared/styles/colors';
+import { trimName} from "shared/utils";
 
 interface Props {
     addPlayerToUser: any,
@@ -32,28 +33,23 @@ class PlayerList extends Component<Props> {
         const {
             players,
         } = this.props;
-
+        
+        console.log()
         return (
-            <table className={css(styles.playerTable)}>
-                <tbody>
-                    <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>team</th>
-                        <th>rating</th>
-                    </tr>
+            <div className={css(styles.playerTable)}>
                     {
                         players.map((player, index) =>
-                            <tr className={css(styles.playerRow)} key={index} onClick={() => this.movePlayerToUser(player)}>
-                                <td>{player.id}</td>
-                                <td><img src={player.img_url} />{player.name}</td>
-                                <td>{player.team}</td>
-                                <td>{player.rating}</td>
-                            </tr>
+                        
+                            <div className={css(styles.playerRow)} key={index} onClick={() => this.movePlayerToUser(player)}>
+                                <div>{player.id}</div>
+                                <img src={player.img_url} />
+                                <div>{trimName(player.name)}</div>
+                                <div>{player.team}</div>
+                                <div>{player.rating}</div>
+                            </div>
                         )
                     }
-                </tbody>
-            </table>
+            </div>
         );
     }
 
@@ -62,16 +58,30 @@ class PlayerList extends Component<Props> {
 export default PlayerList;
 
 const styles = StyleSheet.create({
-    playerTable: {
-        marginLeft: "50vw",
-        height: "100vh",
-        float: "left",
+    playerTable:{
+        float: "right",
         align: "left",
     },
     playerRow: {
-        backgroundColor: orange,
-        borderRadius: "20em",
-        paddingTop: "20em",
-        marginTop: "20em"
+        backgroundColor: "grey",
+        padding: "0.6em",
+        marginTop: "0.3em",
+        display: "flex",
+        borderRadius: "5em",
+    },
+    rating:{
+
+    },
+    team:{
+
+    },
+    name:{
+
+    },
+    imgAvatar:{
+
+    },
+    rank:{
+
     },
 });

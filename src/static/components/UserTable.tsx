@@ -17,42 +17,32 @@ class PlayerList extends Component<Props> {
         super(props);
     }
 
-    renderTableData() {
-        const { users, removePick } = this.props
-        let tableData: any = []
-        users.map((user, index) => {
-            tableData.push(<div><h1>{user.name}</h1></div>)
-            tableData.push(
-                user.players.map((athlete, index) => {
-                        tableData.push(<PlayerCards athlete={athlete} removePick={removePick} user={user} />)
-                        tableData.push(<hr />)
-                    })
-                )
+    renderTableData(user) {
+        const { removePick } = this.props
+        let playersPerUser: any = []
+
+        user.players.map((athlete, index) => {
+            playersPerUser.push(<PlayerCards athlete={athlete} removePick={removePick} user={user} />)
+            playersPerUser.push(<hr />)
         })
-        return tableData
+        return playersPerUser
     }
 
     renderTableHeader() {
-        const { numberOfPicks } = this.props
-        let pickHeader: any = []
-        for (let i = 0; i < numberOfPicks; i++) {
-            pickHeader.push(<th key={i}>pick {i + 1}</th>)
-        }
-        return pickHeader
+        let columnPerUser: any = []
+        const { users } = this.props
+        users.map((user) => {
+            columnPerUser.push(<div className={css(styles.column)}><h1>{user.name}</h1>{this.renderTableData(user)}</div>)
+        })
+        return columnPerUser
     }
 
     public render() {
 
         return (
-            <table>
-                <tbody>
-                    {
-                        // <tr><th>picks</th>{this.renderTableHeader()}</tr>
-                        // <tr><th>users</th></tr>
-                        }
-                    {this.renderTableData()}
-                </tbody>
-            </table>
+                    <div className={css(styles.flexContainer)}>
+                    {this.renderTableHeader()}
+                    </div>
         );
     }
 
@@ -61,5 +51,13 @@ class PlayerList extends Component<Props> {
 export default PlayerList;
 
 const styles = StyleSheet.create({
-
+    flexContainer:{
+        width: "60vw",
+        display: "flex",
+        float: "left",
+    },
+    column:{
+        marginLeft: "5em",
+        flex: "wrap",
+    }
 });
