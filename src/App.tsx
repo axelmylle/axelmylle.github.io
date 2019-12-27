@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     cursor: "pointer",
   },
   displayValue: {
-    backgroundColor: purple,
+    backgroundColor: `rgb(${purple})`,
     textAlign: "center",
     width: "3em",
     paddingTop: "1em",
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     height: '2.3em',
     borderRadius: '5em',
     boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.15)',
-    backgroundColor: purple,
+    backgroundColor: `rgb(${purple})`,
     marginTop: "2em",
     paddingTop: "0.6em",
     fontSize: '1.2em',

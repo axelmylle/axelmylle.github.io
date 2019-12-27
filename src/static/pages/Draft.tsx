@@ -32,6 +32,7 @@ class Draft extends Component<Props, State> {
                 name: 'axel',
                 players: [
                     { id: 1, name: "LeBron James", team: "LAL", rating: 97, position: "SF", img_url: "https://www.2kratings.com//wp-content/uploads/LeBron-James-2K.png" },
+                    { id: 2, name: "Giannis Antetokounmpo", team: "MIL", rating: 97, position: "SF", img_url: "https://www.2kratings.com//wp-content/uploads/Giannis-Antetokounmpo.png" },
                 ]
             },
             {

@@ -21,9 +21,11 @@ class PlayerList extends Component<Props> {
         const { users, removePick } = this.props
         let tableData: any = []
         users.map((user, index) => {
+            tableData.push(<div><h1>{user.name}</h1></div>)
             tableData.push(
                 user.players.map((athlete, index) => {
                         tableData.push(<PlayerCards athlete={athlete} removePick={removePick} user={user} />)
+                        tableData.push(<hr />)
                     })
                 )
         })
@@ -44,8 +46,10 @@ class PlayerList extends Component<Props> {
         return (
             <table>
                 <tbody>
-                    <tr><th>picks</th>{this.renderTableHeader()}</tr>
-                    <tr><th>users</th></tr>
+                    {
+                        // <tr><th>picks</th>{this.renderTableHeader()}</tr>
+                        // <tr><th>users</th></tr>
+                        }
                     {this.renderTableData()}
                 </tbody>
             </table>

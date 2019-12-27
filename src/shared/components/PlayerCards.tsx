@@ -17,10 +17,7 @@ class PlayerCards extends Component<Props> {
 
     public render() {
         const { athlete, removePick, user } = this.props
-        console.log(`rgb(${lightenColor(diamond)})`)
-        console.log(`rgb(${lightenColor(white)})`)
-        console.log(`rgb(${lightenColor(black)})`)
-        console.log(`rgb(${lightenColor(purple)})`)
+        console.log(performanceToClass(ratingChecker(athlete.rating)))
 
         return (
             <div className={css(styles.card)} onClick={() => removePick(athlete.id, user.id, athlete)}>
@@ -29,7 +26,8 @@ class PlayerCards extends Component<Props> {
                 </div>
                 <div>
                 <div className={css(styles.upperSection)}>
-                    {athlete.name}
+                    {athlete.name[0]}. 
+                    {athlete.name.substring(athlete.name.lastIndexOf(" ")+1)}
                 </div>
                 <div className={css(styles.belowSection)}>
                     {athlete.position}
@@ -40,7 +38,7 @@ class PlayerCards extends Component<Props> {
                 </div>
                 </div>
                 <div className={css(styles.emoji)}>
-
+                💎
                 </div>
             </div>
         );
@@ -52,24 +50,31 @@ export default PlayerCards;
 const styles = StyleSheet.create({
     upperSection: {
         paddingTop: "1.3em",
+        fontWeight: "bold",
     },
     belowSection: {
         paddingTop: "0.5em",
     },
     card: {
-        backgroundColor: `rgb(${diamond})`,
         borderRadius: "1em",
         width: "15em",
         height: "5em",
         filter:" drop-shadow(0.2em 0.2em 0.2em grey)",
+        backgroundColor: `rgb(${diamond})`,
+        ':hover': {
+            backgroundColor: 'red'
+        }
     },
     emoji:{
         float: "right",
-        marginTop: "-3em",
-        marginRight: "-4em",
-        backgroundColor: "black",
+        marginTop: "-3.8em",
+        marginRight: "-4.7em",
+        backgroundColor: `rgb(${lightenColor(diamond)})`,
         width: "2em",
         height: "2em",
+        borderRadius: "0em 1em 0em 1em",
+        paddingTop: "0.6em",
+        paddingLeft: "0.45em"
     },
     athleteImg: {
         display: "inline",
