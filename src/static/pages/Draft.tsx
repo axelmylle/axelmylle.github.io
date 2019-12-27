@@ -22,7 +22,6 @@ interface State {
     players: Array<any>,
     currentPicker: number,
     lastFirstPick: number,
-    lastPicker: number,
 }
 
 class Draft extends Component<Props, State> {
@@ -175,7 +174,6 @@ class Draft extends Component<Props, State> {
             numberOfPicks: 10,
             lastFirstPick: 1,
             currentPicker: 1,
-            lastPicker: 0
         };
 
     }
@@ -227,7 +225,7 @@ class Draft extends Component<Props, State> {
         ** if argument is false, player gets removed
         */
 
-        let { currentPicker, lastFirstPick, lastPicker } = this.state
+        let { currentPicker, lastFirstPick } = this.state
         const { users } = this.state
         console.log(users.length)
 
@@ -246,19 +244,17 @@ class Draft extends Component<Props, State> {
             lastFirstPick= currentPicker
         }
         else if(lastFirstPick === users.length && currentPicker !== 1){
-            currentPicker--
-            lastPicker--
+            currentPicker = currentPicker - 1
         }
         else {
-            currentPicker--
-            lastPicker++
+            currentPicker = currentPicker + 1
         }
        }
-       //if picktype is false, player got removed
+       //if picktype is false,
        else{
 
        }
-        this.setState({ currentPicker, lastFirstPick, lastPicker })
+        this.setState({ currentPicker, lastFirstPick })
 
     }
 
