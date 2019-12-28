@@ -1,6 +1,6 @@
 import convert from "color-convert";
 import { StyleSheet, css } from 'aphrodite/no-important';
-import { kiwi, strawberry, orange, diamond } from 'shared/styles/colors';
+import { fire, poor, adequate, diamond, white } from 'shared/styles/colors';
 
 export const isProduction = () => process.env.NODE_ENV === 'production';
 
@@ -11,39 +11,52 @@ export enum PerformanceScale {
     diamond
   }
   
-  export function ratingChecker(rating: number): PerformanceScale {
-    let ratingType = PerformanceScale.poor;
-    if (rating >= 93) {
-        ratingType = PerformanceScale.diamond;
-    } else if (rating >= 86) {
-        ratingType = PerformanceScale.great;
-    } else if (rating >= 81) {
-        ratingType = PerformanceScale.adequate;
+  export function ratingChecker(ratingNumber: number) {
+    let rating = {
+      color: poor,
+      emoji: "😂"
+    }
+    if (ratingNumber >= 93) {
+      rating = {
+        color: diamond,
+        emoji: "💎"
+      }
+    } else if (ratingNumber >= 86) {
+      rating = {
+        color: fire,
+        emoji: "🔥"
+      }
+    } else if (ratingNumber >= 81) {
+      rating = {
+        color: adequate,
+        emoji: "👍"
+      }
     } 
-    return ratingType;
+    return rating;
   };
 
   export function performanceToClass(performance: PerformanceScale): string {
     return css({
-        [PerformanceScale.poor]: styles.strawberryFill,
-        [PerformanceScale.adequate]: styles.orangeFill,
-        [PerformanceScale.great]: styles.kiwiFill,
+        [PerformanceScale.poor]: styles.poorFill,
+        [PerformanceScale.adequate]: styles.adequateFill,
+        [PerformanceScale.great]: styles.fireFill,
         [PerformanceScale.diamond]: styles.diamondFill,
     }[performance]);
 }
 
 export const styles =  StyleSheet.create({
     diamondFill: {
-        backgroundColor: diamond,
+        backgroundColor: `rgb(${diamond})`,
     },
-    kiwiFill: {
-        backgroundColor: kiwi,
+    fireFill: {
+        backgroundColor: `rgb(${fire})`,
+        color: white
     },
-    strawberryFill: {
-        backgroundColor: strawberry
+    poorFill: {
+        backgroundColor: `rgb(${poor})`,
     },
-    orangeFill: {
-        backgroundColor: orange,
+    adequateFill: {
+        backgroundColor: `rgb(${adequate})`,
     },
 });
 
@@ -65,8 +78,8 @@ export function lightenColor(rgbString){
 
   export function darkenColor(rgbString: string): string {
     if (rgbString) {
-      const saturation = 52;
-      const lightness = 109;
+      const saturation = 22;
+      const lightness = 48;
       // -------------------------
       const rgbArray = rgbString.split(",").map(item => Number(item));
       const hsl: number[] = convert.rgb.hsl(rgbArray);

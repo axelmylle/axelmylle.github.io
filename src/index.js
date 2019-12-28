@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import * as Sentry from '@sentry/browser';
 import App from './App';
 import Draft from './static/pages/Draft';
+import TournamentBracket from './static/pages/TournamentBracket';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore, { history } from './redux_setup/store';
@@ -25,6 +26,7 @@ const render = () => {
         <Switch>
           <Route path="/" exact component={App} />
           <Route path={`/${ROUTES.DRAFT}`} exact component={Draft} />
+          <Route path={`/${ROUTES.TOURNAMENT_BRACKET}`} exact component={TournamentBracket} />
         </Switch>
       </ConnectedRouter>
     </Provider>,

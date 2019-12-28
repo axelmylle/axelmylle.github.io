@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { css, StyleSheet } from 'aphrodite';
-import {
-    useTable,
-} from 'react-table'
 import PlayerCards from 'shared/components/PlayerCards';
 
 interface Props {

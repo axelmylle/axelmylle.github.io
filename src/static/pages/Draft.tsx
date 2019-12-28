@@ -5,10 +5,6 @@ import UserTable from 'static/components/UserTable';
 import { StoreState } from "types/state";
 import { connect } from "react-redux";
 import { orange, grey } from 'shared/styles/colors';
-// import {
-//     useTable,
-//     useGroupBy,
-//   } from 'react-table'
 
 interface Props {
     match: any;
@@ -44,7 +40,7 @@ class Draft extends Component<Props, State> {
                 players: [
                     { id: 3, name: "James Harden", team: "HOU", rating: 97, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/James-Harden.png" },
                 { id: 4, name: "Anthony Davis", team: "LAL", rating: 96, position: "PF", img_url: "https://www.2kratings.com//wp-content/uploads/Anthony-Davis.png" },
-                { id: 16, name: "Trae Young", team: "ATL", rating: 89, position: "PG", img_url: "https://www.2kratings.com//wp-content/uploads/Trae-Young.png" },
+                { id: 14, name: "Jimmy Butler", team: "MIA", rating: 89, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/Jimmy-Butler-2K.png" },
                 { id: 17, name: "Klay Thompson", team: "GSW", rating: 89, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/Klay-Thompson.png" },
                 ]
             },
@@ -54,7 +50,7 @@ class Draft extends Component<Props, State> {
                 players: [
                     { id: 3, name: "James Harden", team: "HOU", rating: 97, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/James-Harden.png" },
                 { id: 4, name: "Anthony Davis", team: "LAL", rating: 96, position: "PF", img_url: "https://www.2kratings.com//wp-content/uploads/Anthony-Davis.png" },
-                { id: 16, name: "Trae Young", team: "ATL", rating: 89, position: "PG", img_url: "https://www.2kratings.com//wp-content/uploads/Trae-Young.png" },
+                { id: 14, name: "Jimmy Butler", team: "MIA", rating: 89, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/Jimmy-Butler-2K.png" },
                 { id: 17, name: "Klay Thompson", team: "GSW", rating: 89, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/Klay-Thompson.png" },
                 ]
             },
@@ -64,7 +60,7 @@ class Draft extends Component<Props, State> {
                 players: [
                     { id: 3, name: "James Harden", team: "HOU", rating: 97, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/James-Harden.png" },
                 { id: 4, name: "Anthony Davis", team: "LAL", rating: 96, position: "PF", img_url: "https://www.2kratings.com//wp-content/uploads/Anthony-Davis.png" },
-                { id: 16, name: "Trae Young", team: "ATL", rating: 89, position: "PG", img_url: "https://www.2kratings.com//wp-content/uploads/Trae-Young.png" },
+                { id: 14, name: "Jimmy Butler", team: "MIA", rating: 89, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/Jimmy-Butler-2K.png" },
                 { id: 17, name: "Klay Thompson", team: "GSW", rating: 89, position: "SG", img_url: "https://www.2kratings.com//wp-content/uploads/Klay-Thompson.png" },
                 ]
             },
@@ -287,8 +283,6 @@ export default connect(mapStateToProps)(Draft);
 
 const styles = StyleSheet.create({
     App: {
-        width: '100vw',
-        height: '100vh',
         alignItems: 'center',
         transition: '0.3s',
         backgroundColor: grey
