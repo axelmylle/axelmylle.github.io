@@ -62,7 +62,6 @@ export const styles =  StyleSheet.create({
 
 export function lightenColor(rgbString){
     if (rgbString) {
-        console.log(rgbString)
       const saturation = 98;
       const lightness = 91;
       // -------------------------

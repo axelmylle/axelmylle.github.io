@@ -285,6 +285,8 @@ const styles = StyleSheet.create({
     App: {
         alignItems: 'center',
         transition: '0.3s',
-        backgroundColor: grey
+        backgroundColor: grey,
+        height: "100vh",
+        width: "100vw",
     },
 });

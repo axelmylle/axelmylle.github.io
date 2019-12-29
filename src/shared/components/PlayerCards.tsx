@@ -15,25 +15,6 @@ class PlayerCards extends Component<Props> {
         super(props);
     }
 
-    ratingSymbol(rating) {
-
-        if (rating >= 93) {
-            return "💎"
-        }
-        if (rating >= 86) {
-            return "🔥"
-        }
-        if (rating >= 81) {
-            return "👍"
-        }
-        if (rating < 80) {
-            return "😂"
-        }
-        return null
-
-
-    }
-
     public render() {
         const { athlete, removePick, user } = this.props
 
@@ -42,7 +23,7 @@ class PlayerCards extends Component<Props> {
                 backgroundColor: `rgb(${ratingChecker(athlete.rating).color})`,
                 //backgroundImage: `linear-gradient(to right, rgb(${ratingChecker(athlete.rating).color}) , rgb(${lightenColor(ratingChecker(athlete.rating).color)}))`
             }}
-            className={css(styles.card)} onClick={() => removePick(athlete.id, user.id, athlete)}>
+                className={css(styles.card)} onClick={() => removePick(athlete.id, user.id, athlete)}>
 
                 <div>
                     <img className={css(styles.athleteImg)} src={athlete.img_url} />
@@ -55,10 +36,10 @@ class PlayerCards extends Component<Props> {
                         {athlete.position}
                         <div>
                             <div className={css(styles.rating)}
-                            style={{
-                                color: black,
-                                backgroundColor: `rgb(${lightenColor(ratingChecker(athlete.rating).color)})`,
-                            }}
+                                style={{
+                                    color: black,
+                                    backgroundColor: `rgb(${lightenColor(ratingChecker(athlete.rating).color)})`,
+                                }}
                             >{athlete.rating}</div></div>
                     </div>
                 </div>
@@ -113,7 +94,7 @@ const styles = StyleSheet.create({
         width: "1.7em",
         height: "1.7em",
         borderRadius: "1em",
-        
+
         display: "inline",
         marginRight: "3em",
         marginTop: "-1.3em"
