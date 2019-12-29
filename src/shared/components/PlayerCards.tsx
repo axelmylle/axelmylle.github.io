@@ -67,8 +67,9 @@ const styles = StyleSheet.create({
     card: {
         filter: " drop-shadow(0.2em 0.2em 0.2em grey)",
         borderRadius: "1em",
-        width: "15em",
+        width: "16em",
         height: "5em",
+        margin: "1em",
     },
     emoji: {
         float: "right",

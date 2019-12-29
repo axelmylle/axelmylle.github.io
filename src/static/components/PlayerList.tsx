@@ -41,7 +41,7 @@ class PlayerList extends Component<Props> {
                 >
 
                     <div>
-                        <img className={css(styles.athleteImg)} src={athlete.img_url} />
+                        <img className={css(styles.athleteImg)} src={athlete.img_avatar} />
                     </div>
                     <div>
                         <div className={css(styles.upperSection)}>
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
         float: "right",
         align: "left",
         marginRight: "2em",
+        marginTop: "2em",
     },
     upperSection: {
         paddingTop: "1.1em",
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
         width: "20em",
         height: "4em",
         margin: "1em",
+        cursor: "pointer",
     },
     emoji: {
         float: "right",
